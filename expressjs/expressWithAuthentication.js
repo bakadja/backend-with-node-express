@@ -30,7 +30,7 @@ app.use(session({ secret: "fingerpint" })); // Middleware to handle sessions
 // Middleware to authenticate users using JWT
 app.use("/auth", function auth(req, res, next) {
   if (req.session.authorization) { // Get the authorization object stored in the session
-    token = req.session.authorization['accessToken']; // Retrieve the token from authorization object
+    let token = req.session.authorization['accessToken']; // Retrieve the token from authorization object
     jwt.verify(token, "access", (err, user) => { // Use JWT to verify token
       if (!err) {
         req.user = user;
