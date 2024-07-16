@@ -28,6 +28,21 @@ app.get("/:name", (req, res) => {
     res.send("Hello " + req.params.name);
 });
 
+app.get("/fetchMonth/:number", (req, res) => {
+
+    const months = ["Invalid month number","January", "February", "March", "April", "May", "June", "July","August", "September", "October", "November", "December"];
+
+    const numberInt = parseInt(req.params.number);
+
+    if(Number.isNaN(numberInt) || numberInt < 1 || numberInt > 12){
+
+     return res.status("404").send(months[0]);
+    }
+
+    res.send(months[numberInt]);
+});
+
+
 // Start the server and listen on port 3333
 app.listen(3333, () => {
     console.log(`Listening at http://localhost:3333`);
